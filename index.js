@@ -24,10 +24,12 @@ const items = [
 
 app.get("/students", (req, res) => {
     res.json(students);
+    console.log(req.url);
 });
 
 app.get("/items", (req, res) => {
     res.json(items);
+    console.log(req.url);
 });
 
 app.listen(3000, () => {
