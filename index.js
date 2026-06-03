@@ -1,6 +1,7 @@
 const express = require("express");
 
 const app = express();
+app.use(express.json());
 
 app.get("/", (req, res) => {
     res.json({
@@ -25,6 +26,20 @@ const items = [
 app.get("/students", (req, res) => {
     res.json(students);
     console.log(req.url);
+});
+
+app.post("/students", (req, res) =>{
+
+    console.log(req.body);
+    const newStudent = {
+        id: students.length+1,
+        name: req.body.name
+    };
+    students.push(newStudent);
+    res.json({
+        message: "Student added successfully",
+        student: newStudent
+    });
 });
 
 app.get("/items", (req, res) => {
