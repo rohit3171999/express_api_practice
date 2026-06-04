@@ -31,6 +31,12 @@ app.get("/students", (req, res) => {
 app.post("/students", (req, res) =>{
 
     console.log(req.body);
+
+    if(!req.body.name){
+        return res.status(400).json({
+            message: "Name is required"
+        });
+    }
     const newStudent = {
         id: students.length+1,
         name: req.body.name
