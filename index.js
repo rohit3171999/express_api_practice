@@ -3,10 +3,19 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.json({
-        message: "Express Server Working Fine!"
-    });
+app.get("/students/:id", (req, res) => {
+
+    const studentsID=parseInt(req.params.id);
+    const student = students.find(
+        s => s.id === studentsID
+    );
+
+    if(!student){
+        return res.status(404).json({
+            message: "Student not Found and not Exist!!!"
+        })
+    }
+    res.json(student);
 });
 
 const students = [
